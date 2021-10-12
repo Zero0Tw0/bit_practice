@@ -1,6 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
-//17.04 ÏûÊ§µÄÊı×Ö
+//17.04 æ¶ˆå¤±çš„æ•°å­—
 int missingNumber(int* nums, int numsSize) {
     int ans = 0;
     int i = 0;
@@ -14,7 +14,7 @@ int missingNumber(int* nums, int numsSize) {
 
 
 
-//½£Ö¸ Offer 56 - I. Êı×éÖĞÊı×Ö³öÏÖµÄ´ÎÊı
+//å‰‘æŒ‡ Offer 56 - I. æ•°ç»„ä¸­æ•°å­—å‡ºç°çš„æ¬¡æ•°
 //
 /**
  * Note: The returned array must be malloced, assume caller calls free().
@@ -25,13 +25,13 @@ int* singleNumbers(int* nums, int numsSize, int* returnSize) {
     int i;
     for (i = 0; i < numsSize; i++)
     {
-        ans ^= nums[i]; //½«numsÖĞËùÓĞÊı×éÒì»ò 
+        ans ^= nums[i]; //å°†numsä¸­æ‰€æœ‰æ•°ç»„å¼‚æˆ– 
     }
     for (i = 0; (1 << i) <= ans; i++)
     {
         tmp = ans;
         tmp |= (1 << i);
-        if (tmp == ans)  //Èç¹û»òºóÓëÔ­À´ÏàµÈ,ËµÃ÷¸ÃÎ»Îª1,±íÃ÷Á½¸öÊıÔÚ¸ÃÎ»²»Í¬£¬¼ÇÂ¼¸ÃÎ»
+        if (tmp == ans)  //å¦‚æœæˆ–åä¸åŸæ¥ç›¸ç­‰,è¯´æ˜è¯¥ä½ä¸º1,è¡¨æ˜ä¸¤ä¸ªæ•°åœ¨è¯¥ä½ä¸åŒï¼Œè®°å½•è¯¥ä½
         {
             break;
         }
@@ -41,8 +41,8 @@ int* singleNumbers(int* nums, int numsSize, int* returnSize) {
     {
         tmp = nums[j];
         tmp |= (1 << i);
-        if (tmp != nums[j])         //½«numsÖĞiÎ»ÉÏÎª1µÄÒì»òret[1]£¬
-        {                           //iÎ»ÉÏÎª0µÄÒì»òµ½ret[0]
+        if (tmp != nums[j])         //å°†numsä¸­iä½ä¸Šä¸º1çš„å¼‚æˆ–ret[1]ï¼Œ
+        {                           //iä½ä¸Šä¸º0çš„å¼‚æˆ–åˆ°ret[0]
             ret[0] ^= nums[j];
         }
         else
@@ -53,3 +53,4 @@ int* singleNumbers(int* nums, int numsSize, int* returnSize) {
     *returnSize = 2;
     return ret;
 }
+//
