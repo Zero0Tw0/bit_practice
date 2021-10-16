@@ -165,7 +165,7 @@
 //}
 
 
-
+ 
 //atoi π”√
 //
 //#include<stdio.h>
