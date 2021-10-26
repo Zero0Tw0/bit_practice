@@ -2,7 +2,50 @@
 
 //138. 复制带随机指针的链表
 //
-struct Node* copyRandomList(struct Node* head) {    //error:10_26
+struct Node* copyRandomList(struct Node* head) {        //error1:10_26
+    struct Node* cur = head;
+    if (head == NULL)
+        return NULL;
+    while (cur)          //在每个原结点后面插入一个复制结点，复制结点的random为NULL
+    {
+        struct Node* NewNode = (struct Node*)malloc(sizeof(struct Node));
+        NewNode->val = cur->val;
+        NewNode->next = cur->next;
+        NewNode->random = NULL;
+        cur->next = NewNode;
+        cur = NewNode->next;
+    }
+    struct Node* OrgHead = head;
+    struct Node* Orgtail = head;
+    while (Orgtail)
+    {
+        struct Node* CopyTail = Orgtail->next;
+        if (Orgtail->random == NULL)
+        {
+            CopyTail->random = NULL;
+        }
+        else
+        {
+            struct Node* CopyRandom = Orgtail->random;
+            CopyTail->random = CopyRandom->next;
+        }
+        Orgtail = CopyTail->next;
+        CopyTail = Orgtail->next;
+    }
+    struct Node* Copyhead = OrgCur->next;
+    struct Node* OrgCur = OrgHead;
+    while (OrgCur)
+    {
+        struct Node* CopyCur = OrgCur->next;
+        struct Node* OrgNext = CopyCur->next;
+        CopyCur->next = OrgNext->next;
+        OrgCur->next = OrgNext;
+        OrgCur = OrgNext;
+    }
+    return CopyHead;
+}
+
+struct Node* copyRandomList(struct Node* head) {    //error2:10_26
     if (head == NULL)
         return NULL;
     struct Node* headcur = head;
