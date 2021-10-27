@@ -75,3 +75,54 @@ struct Node* copyRandomList(struct Node* head) {    //error2:10_26
     }
     return NULL;
 }
+
+
+
+struct Node* copyRandomList(struct Node* head) {            //PASS:10_27
+    if (head == NULL)
+        return NULL;
+    struct Node* sorcur = head;
+    while (sorcur)
+    {
+        struct Node* newnode = (struct Node*)malloc(sizeof(struct Node));
+        newnode->random = NULL;
+        newnode->val = sorcur->val;
+
+        newnode->next = sorcur->next;
+        sorcur->next = newnode;
+        sorcur = newnode->next;
+    }
+    sorcur = head;
+    while (sorcur)
+    {
+        struct Node* copycur = sorcur->next;
+        if (sorcur->random == NULL)
+        {
+            copycur->random = NULL;
+        }
+        else
+        {
+            copycur->random = sorcur->random->next;
+        }
+        sorcur = copycur->next;
+    }
+    sorcur = head;
+    struct Node* copytail = sorcur->next;
+    struct Node* copyhead = sorcur->next;
+    while (sorcur)
+    {
+        sorcur->next = copytail->next;
+        sorcur = sorcur->next;
+        if (sorcur == NULL)
+        {
+            copytail->next = NULL;
+        }
+        else
+        {
+            copytail->next = sorcur->next;
+            copytail = copytail->next;
+        }
+    }
+    return copyhead;
+}
+
