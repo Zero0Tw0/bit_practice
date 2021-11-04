@@ -3,6 +3,15 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+void StrPrint(int* a, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		printf("%d ", a[i]);
+	}
+	printf("\n");
+}
+
 void InsertSort(int* a, int n)
 {
 	for (int i = 0; i < n - 1; i++)
@@ -133,23 +142,87 @@ void HeapSort(int* a, int n)
 	}
 }
 
-void StrPrint(int* a,int n)
+void BubbleSort(int* a, int n)
 {
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < n - 1; i++)
 	{
-		printf("%d ", a[i]);
+		for (int j = 1; j < n - i; j++)
+		{
+			if (a[j - 1] > a[j])
+			{
+				Swap(&a[j - 1], &a[j]);
+			}
+		}
 	}
-	printf("\n");
+}
+
+void HoareSort(int* a, int begin,int end)
+{
+	if (begin > end)
+	{
+		return;
+	}
+	int left = begin;
+	int right = end;
+	int keyi = begin;
+	while (left < right)
+	{
+		while (left<right && a[right] >= a[keyi])
+		{
+			right--;
+		}
+		while (left<right && a[left] <= a[keyi])
+		{
+			left++;
+		}
+		Swap(&a[left], &a[right]);
+	}
+	Swap(&a[keyi], &a[left]);
+
+	HoareSort(a,begin, left-1);
+	HoareSort(a, left + 1, end);
+}
+
+void DigHoleSort(int* a, int begin, int end)
+{
+	if (begin > end)
+	{
+		return;
+	}
+	int left = begin;
+	int right = end;
+	int key = a[begin];
+	while (left < right)
+	{
+		while (left < right && a[right] >= key)
+		{
+			right--;
+		}
+		a[left] = a[right];
+	
+		while (left < right && a[left] <= key)
+		{
+			left++;
+		}
+		a[right] = a[left];
+	}
+	a[left] = key;
+	DigHoleSort(a, begin, left - 1);
+	DigHoleSort(a, left + 1, end);
 }
 
 int main()
 {
-	int a[] = { 9,8,7,6,5,4,3,2,1,0,-1,-2,-3,-4,-5,-6,-7,-8,-9 };
+	//int a[] = { 8,8,7,6,5,4,3,2,1,0,-1,-2,-3,-4,-5,-6,-7,-8,-8 };
+	int a[] = { 6,1,2,7,9,3,4,5,10,8 };
 	int sz = sizeof(a) / sizeof(a[0]);
 	//InsertSort(a, sz);
 	//ShellSort(a, sz);
 	//SelectSort(a, sz);
-	HeapSort(a, sz);
+	//HeapSort(a, sz);
+	//BubbleSort(a, sz);
+	//HoareSort(a,0, sz-1);
+	DigHoleSort(a, 0, sz - 1);
 	StrPrint(a,sz);
 	return 0;
 }
