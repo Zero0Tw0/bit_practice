@@ -1,3 +1,2 @@
 ﻿  strstr_KMP.c
-D:\c语言\repository\bit\c_11_23\c_11_23\strstr_KMP.c(10,24): warning C4013: “strlen”未定义；假设外部返回 int
   c_11_23.vcxproj -> D:\c语言\repository\bit\c_11_23\Debug\c_11_23.exe

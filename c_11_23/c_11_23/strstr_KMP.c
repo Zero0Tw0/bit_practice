@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<malloc.h>
-
+#include<string.h>
 
 void GetNext(char* needle, int* Next)
 {
@@ -22,7 +22,7 @@ void GetNext(char* needle, int* Next)
 
     while (cur < NEsize)
     {
-        if (k == -1 || needle[cur] == needle[k])
+        if (k == -1 || needle[cur - 1] == needle[k])
         {
             Next[cur] = k + 1;
             k++;
