@@ -86,5 +86,4 @@ bool checkPerfectNumber(int num) {
     return false;
 }
 
-//
-//
+
