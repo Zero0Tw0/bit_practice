@@ -69,3 +69,4 @@ int* findErrorNums(int* nums, int numsSize, int* returnSize) {
     ret[1] = tmp ^ ret[0];
     return ret;
 }
+
