@@ -94,3 +94,5 @@ bool hasAlternatingBits(int n) {
         return true;
     return false;
 }
+
+
